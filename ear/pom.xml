@@ -37,14 +37,6 @@
           </modules>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.wildfly.plugins</groupId>
-        <artifactId>wildfly-maven-plugin</artifactId>
-        <version>1.0.2.Final</version>
-        <configuration>
-          <jboss-home>${wildfly.home}</jboss-home>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
