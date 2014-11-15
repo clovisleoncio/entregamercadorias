@@ -27,6 +27,7 @@
   </dependencies>
 
   <modules>
+    <module>ejb</module>
     <module>api</module>
     <module>ear</module>
   </modules>
