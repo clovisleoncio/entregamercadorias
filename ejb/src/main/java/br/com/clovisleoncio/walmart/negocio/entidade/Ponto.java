@@ -3,10 +3,22 @@ package br.com.clovisleoncio.walmart.negocio.entidade;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Ponto {
 	
+	@Id
 	private String nome;
+	
+	@OneToMany(mappedBy = "origem", cascade = CascadeType.ALL)
 	private List<Trecho> trechos = new ArrayList<Trecho>(); // set?
+	
+	public Ponto() {
+	}
 
 	public Ponto(String nome) {
 		this.nome = nome;

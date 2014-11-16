@@ -5,10 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class MalhaLogistica {
 	
+	@Id
 	private String nome;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "malhalogistica")
 	private List<Ponto> pontos;
+	
+	public MalhaLogistica() {
+	}
 	
 	public MalhaLogistica(String nome, List<Ponto> pontos) {
 		this.nome = nome;

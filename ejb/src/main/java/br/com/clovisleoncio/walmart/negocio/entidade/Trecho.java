@@ -1,10 +1,32 @@
 package br.com.clovisleoncio.walmart.negocio.entidade;
 
-public class Trecho {
+import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Trecho {
+	
+	@Id
+	private String id = UUID.randomUUID().toString();
+
+	@ManyToOne
+	@JoinColumn(name = "origem")
 	private Ponto origem;
+
+	@ManyToOne
+	@JoinColumn(name = "destino")
 	private Ponto destino;
+	
+	@Column
 	private Integer distancia;
+	
+	public Trecho() {
+	}
 
 	public Trecho(Ponto origem, Ponto destino, Integer distancia) {
 		this.origem = origem;

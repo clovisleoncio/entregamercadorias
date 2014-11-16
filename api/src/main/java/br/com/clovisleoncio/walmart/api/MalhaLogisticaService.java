@@ -9,7 +9,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
+import br.com.clovisleoncio.walmart.api.parse.MalhaLogisticaBuilder;
 import br.com.clovisleoncio.walmart.negocio.MalhaLogisticaEJB;
+import br.com.clovisleoncio.walmart.negocio.entidade.MalhaLogistica;
 
 @Path("/malhalogistica")
 public class MalhaLogisticaService {
@@ -34,6 +36,19 @@ public class MalhaLogisticaService {
 	public String adicionar(@MatrixParam("nome") String nome, @MatrixParam("malha") String malha) {
 		System.out.println(String.format("Nome da malha: %s", nome));
 		System.out.println(String.format("Malha: %s", malha));
+
+		String exemplo = "A B 10\n"
+				+ "B D 15\n"
+				+ "A C 20\n"
+				+ "C D 30\n"
+				+ "B E 50\n"
+				+ "D E 30";
+		
+		MalhaLogisticaBuilder builder = new MalhaLogisticaBuilder();
+		MalhaLogistica malhaLogistica = builder.build("Exemplo", exemplo);
+		
+		malhaLogisticaEJB.gravar(malhaLogistica);
+
 		return "Adicionou";
 	}
 
