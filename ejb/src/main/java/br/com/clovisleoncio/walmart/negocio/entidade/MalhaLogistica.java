@@ -42,6 +42,20 @@ public class MalhaLogistica {
 		this.pontos = pontos;
 	}
 
+	public Caminho getMenorCaminho(String origem, String destino) {
+		Ponto inicio = null;
+		Ponto fim = null;
+		for (Ponto ponto : pontos) {
+			if (ponto.getNome().equals(origem)) {
+				inicio = ponto;
+			}
+			if (ponto.getNome().equals(destino)) {
+				fim = ponto;
+			}
+		}
+		return getMenorCaminho(inicio, fim);
+	}
+
 	public Caminho getMenorCaminho(Ponto inicio, Ponto fim) {
 		
 		List<Ponto> abertos = new ArrayList<Ponto>(pontos);

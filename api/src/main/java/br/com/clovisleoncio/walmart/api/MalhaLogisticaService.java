@@ -11,6 +11,7 @@ import javax.ws.rs.QueryParam;
 
 import br.com.clovisleoncio.walmart.api.parse.MalhaLogisticaBuilder;
 import br.com.clovisleoncio.walmart.negocio.MalhaLogisticaEJB;
+import br.com.clovisleoncio.walmart.negocio.entidade.Caminho;
 import br.com.clovisleoncio.walmart.negocio.entidade.MalhaLogistica;
 
 @Path("/malhalogistica")
@@ -23,13 +24,12 @@ public class MalhaLogisticaService {
 	public String consultar(@QueryParam("nome") String nome, @QueryParam("origem") String origem, @QueryParam("destino") String destino,
 			@QueryParam("autonomia") Integer autonomia, @QueryParam("valorLitro") BigDecimal valorLitro) {
 		
-		System.out.println(String.format("nome da malha: %s", nome));
-		System.out.println(String.format("Origem: %s", origem));
-		System.out.println(String.format("Destino: %s", destino));
-		System.out.println(String.format("Autonomia: %s", autonomia));
-		System.out.println(String.format("Valor do Litro: %s", valorLitro));
+		MalhaLogistica malha = malhaLogisticaEJB.carregar(nome);
+		
+		Caminho caminho = malha.getMenorCaminho(origem, destino);
 
-		return "Chegou";
+		// TODO onde colocar esse calculo?
+		return String.format("[%s] custo: %s", caminho.getRota(), new BigDecimal(caminho.getCusto()).divide(new BigDecimal(autonomia)).multiply(valorLitro));
 	}
 	
 	@PUT

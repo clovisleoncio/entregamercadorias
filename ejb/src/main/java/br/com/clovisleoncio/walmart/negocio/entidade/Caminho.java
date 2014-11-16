@@ -24,4 +24,17 @@ public class Caminho {
 		return pontos;
 	}
 
+	public String getRota() {
+		StringBuilder rota = new StringBuilder();
+		
+		String separador = "";
+		for (Ponto ponto : pontos) {
+			rota.append(separador);
+			rota.append(ponto.getNome());
+			separador = ",";
+		}
+		
+		return rota.toString();
+	}
+
 }
