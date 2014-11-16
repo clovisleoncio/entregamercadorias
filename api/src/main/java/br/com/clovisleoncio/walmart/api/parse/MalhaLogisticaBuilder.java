@@ -13,9 +13,6 @@ public class MalhaLogisticaBuilder {
 	
 	public MalhaLogistica build(String nome, String representacao) {
 		
-		MalhaLogistica malha = new MalhaLogistica();
-		malha.setNome(nome);
-		
 		String[] linhas = representacao.split("\n");
 		
 		for (String linha : linhas) {
@@ -33,9 +30,7 @@ public class MalhaLogisticaBuilder {
 			
 		}
 		
-		malha.setPontos(new ArrayList<Ponto>(nomesToPontos.values()));
-		
-		return malha;
+		return new MalhaLogistica(nome, new ArrayList<Ponto>(nomesToPontos.values()));
 	}
 
 	private Ponto getPonto(String nome) {

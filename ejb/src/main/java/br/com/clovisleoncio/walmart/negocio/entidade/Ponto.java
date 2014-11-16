@@ -25,4 +25,19 @@ public class Ponto {
 		trechos.add(trecho);
 	}
 
+	public List<Trecho> getTrechos() {
+		return trechos;
+	}
+
+	public void setTrechos(List<Trecho> trechos) {
+		this.trechos = trechos;
+	}
+
+	public boolean equals(Ponto o) {
+		return nome.equals(o.nome);
+	}
+
+	public int hashCode() {
+		return nome.hashCode();
+	}
 }
