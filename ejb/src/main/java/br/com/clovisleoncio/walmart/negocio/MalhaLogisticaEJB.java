@@ -38,7 +38,7 @@ public class MalhaLogisticaEJB {
 		return entityManager.find(MalhaLogistica.class, nome);
 	}
 
-	// TODO	usar fetch ao carregar
+	// TODO usar fetch ao carregar
 	public MalhaLogistica carregar(String nome) {
 		MalhaLogistica malha = obter(nome);
 		for (Ponto ponto : malha.getPontos()) {

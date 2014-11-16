@@ -22,6 +22,7 @@ public class Trecho {
 	@JoinColumn(name = "destino")
 	private Ponto destino;
 	
+	// Trocar distancia para bigdecimal
 	@Column
 	private Integer distancia;
 	

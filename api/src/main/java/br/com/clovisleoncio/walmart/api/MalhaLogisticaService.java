@@ -21,6 +21,7 @@ public class MalhaLogisticaService {
 	private MalhaLogisticaEJB malhaLogisticaEJB;
 	
 	@GET
+	// TODO trocar autonomia para BigDecimal
 	public String consultar(@QueryParam("nome") String nome, @QueryParam("origem") String origem, @QueryParam("destino") String destino,
 			@QueryParam("autonomia") Integer autonomia, @QueryParam("valorLitro") BigDecimal valorLitro) {
 		

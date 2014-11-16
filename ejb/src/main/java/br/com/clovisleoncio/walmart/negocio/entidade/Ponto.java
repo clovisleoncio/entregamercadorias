@@ -45,6 +45,7 @@ public class Ponto {
 		this.trechos = trechos;
 	}
 
+	// TODO revisar equals e hashcode. Pode dar problema com o hibernate?
 	public boolean equals(Ponto o) {
 		return nome.equals(o.nome);
 	}
