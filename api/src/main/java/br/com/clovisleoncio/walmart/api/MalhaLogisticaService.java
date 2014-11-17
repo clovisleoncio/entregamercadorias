@@ -21,16 +21,15 @@ public class MalhaLogisticaService {
 	private MalhaLogisticaEJB malhaLogisticaEJB;
 	
 	@GET
-	// TODO trocar autonomia para BigDecimal
 	public String consultar(@QueryParam("nome") String nome, @QueryParam("origem") String origem, @QueryParam("destino") String destino,
-			@QueryParam("autonomia") Integer autonomia, @QueryParam("valorLitro") BigDecimal valorLitro) {
+			@QueryParam("autonomia") BigDecimal autonomia, @QueryParam("valorLitro") BigDecimal valorLitro) {
 		
 		MalhaLogistica malha = malhaLogisticaEJB.carregar(nome);
 		
 		Caminho caminho = malha.getMenorCaminho(origem, destino);
 
 		// TODO onde colocar esse calculo?
-		return String.format("[%s] custo: %s", caminho.getRota(), new BigDecimal(caminho.getCusto()).divide(new BigDecimal(autonomia)).multiply(valorLitro));
+		return String.format("[%s] custo: %s", caminho.getRota(), new BigDecimal(caminho.getCusto()).divide(autonomia).multiply(valorLitro));
 	}
 	
 	@PUT
