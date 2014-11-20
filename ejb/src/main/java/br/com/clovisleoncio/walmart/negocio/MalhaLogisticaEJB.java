@@ -23,6 +23,7 @@ public class MalhaLogisticaEJB {
 	
 	@PostConstruct
 	public void carregarGrafo() {
+		@SuppressWarnings("unchecked")
 		List<Mapa> mapas = entityManager.createQuery("from Mapa").getResultList();
 		grafo = new Grafo(mapas);
 	}
