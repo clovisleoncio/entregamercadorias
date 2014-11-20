@@ -25,7 +25,7 @@ public class GrafoTest {
 		
 		List<Vertice> vertices = caminho.getVertices();
 		
-		assertEquals(10, caminho.getCusto());
+		assertEquals(10, caminho.getPeso());
 		assertEquals(2, vertices.size());
 		assertEquals("A", vertices.get(0).getNome());
 		assertEquals("B", vertices.get(1).getNome());
@@ -49,7 +49,7 @@ public class GrafoTest {
 		
 		List<Vertice> vertices = caminho.getVertices();
 		
-		assertEquals(25, caminho.getCusto());
+		assertEquals(25, caminho.getPeso());
 		assertEquals(3, vertices.size());
 		assertEquals("A", vertices.get(0).getNome());
 		assertEquals("B", vertices.get(1).getNome());

@@ -26,8 +26,7 @@ public class MalhaLogisticaService {
 		
 		Caminho caminho = malhaLogisticaEJB.obterMenorCaminho(origem, destino);
 
-		// TODO onde colocar esse calculo?
-		return String.format("[%s] custo: %s", caminho.getRota(), new BigDecimal(caminho.getCusto()).divide(autonomia).multiply(valorLitro));
+		return String.format("[%s] custo: %s", caminho.getRota(), caminho.getCusto(autonomia, valorLitro));
 	}
 	
 	@PUT
