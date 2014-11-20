@@ -56,5 +56,7 @@ public class GrafoTest {
 		assertEquals("D", vertices.get(2).getNome());
 
 	}
+	
+	//TODO testar grafo formado por mais de um mapa
 
 }
