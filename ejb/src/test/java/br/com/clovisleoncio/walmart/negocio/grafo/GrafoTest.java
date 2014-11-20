@@ -57,6 +57,33 @@ public class GrafoTest {
 
 	}
 	
-	//TODO testar grafo formado por mais de um mapa
+	@Test
+	public void devePermitirDoisMapasGrafo() {
+		
+		Mapa mapa1 = new Mapa("Teste 1", Arrays.asList(new Rota[]{
+				new Rota("A", "B", 10),
+				new Rota("A", "C", 20),
+				new Rota("C", "D", 30),
+		}));
+		
+		Mapa mapa2 = new Mapa("Teste 2", Arrays.asList(new Rota[]{
+				new Rota("B", "D", 15),
+				new Rota("B", "E", 50),
+				new Rota("D", "E", 30)
+		}));
+		
+		Grafo grafo = new Grafo(Arrays.asList(new Mapa[]{mapa1, mapa2}));
+		
+		Caminho caminho = grafo.getMenorCaminho("A", "D");
+		
+		List<Vertice> vertices = caminho.getVertices();
+		
+		assertEquals(25, caminho.getPeso());
+		assertEquals(3, vertices.size());
+		assertEquals("A", vertices.get(0).getNome());
+		assertEquals("B", vertices.get(1).getNome());
+		assertEquals("D", vertices.get(2).getNome());
+
+	}
 
 }
