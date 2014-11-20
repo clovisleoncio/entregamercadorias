@@ -1,13 +1,13 @@
 package br.com.clovisleoncio.walmart.api.parse;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.junit.Test;
 
-import br.com.clovisleoncio.walmart.negocio.entidade.MalhaLogistica;
-import br.com.clovisleoncio.walmart.negocio.entidade.Ponto;
+import br.com.clovisleoncio.walmart.negocio.entidade.Mapa;
+import br.com.clovisleoncio.walmart.negocio.entidade.Rota;
 
 public class MalhaLogisticaBuilderTest {
 	
@@ -23,13 +23,13 @@ public class MalhaLogisticaBuilderTest {
 				+ "B E 50\n"
 				+ "D E 30";
 		
-		MalhaLogistica malha = builder.build("Exemplo", exemplo);
+		Mapa mapa = builder.build("Exemplo", exemplo);
 		
-		assertEquals("Exemplo", malha.getNome());
+		assertEquals("Exemplo", mapa.getNome());
 		
-		List<Ponto> pontos = malha.getPontos();
+		List<Rota> pontos = mapa.getRotas();
 		
-		assertEquals(5, pontos.size());
+		assertEquals(6, pontos.size());
 		
 		// TODO melhorar testes. Como? Procurar biblioteca mais expressiva
 	}

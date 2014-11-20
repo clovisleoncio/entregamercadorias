@@ -1,4 +1,4 @@
-package br.com.clovisleoncio.walmart.negocio.entidade;
+package br.com.clovisleoncio.walmart.negocio.grafo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,35 +6,36 @@ import java.util.List;
 public class Caminho {
 
 	private int custo;
-	private List<Ponto> pontos = new ArrayList<Ponto>();
+	private List<Vertice> vertices = new ArrayList<Vertice>();
 
 	public Caminho(int custo) {
 		this.custo = custo;
 	}
 
-	public void add(Ponto ponto) {
-		this.pontos.add(0, ponto);
+	public void add(Vertice vertice) {
+		this.vertices.add(0, vertice);
 	}
 
 	public int getCusto() {
 		return custo;
 	}
 
-	public List<Ponto> getPontos() {
-		return pontos;
+	public List<Vertice> getVertices() {
+		return vertices;
 	}
 
 	public String getRota() {
 		StringBuilder rota = new StringBuilder();
 		
 		String separador = "";
-		for (Ponto ponto : pontos) {
+		for (Vertice vertice : vertices) {
 			rota.append(separador);
-			rota.append(ponto.getNome());
+			rota.append(vertice.getNome());
 			separador = ",";
 		}
 		
 		return rota.toString();
 	}
+
 
 }

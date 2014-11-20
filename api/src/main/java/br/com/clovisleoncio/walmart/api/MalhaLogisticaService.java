@@ -11,8 +11,8 @@ import javax.ws.rs.QueryParam;
 
 import br.com.clovisleoncio.walmart.api.parse.MalhaLogisticaBuilder;
 import br.com.clovisleoncio.walmart.negocio.MalhaLogisticaEJB;
-import br.com.clovisleoncio.walmart.negocio.entidade.Caminho;
-import br.com.clovisleoncio.walmart.negocio.entidade.MalhaLogistica;
+import br.com.clovisleoncio.walmart.negocio.entidade.Mapa;
+import br.com.clovisleoncio.walmart.negocio.grafo.Caminho;
 
 @Path("/malhalogistica")
 public class MalhaLogisticaService {
@@ -21,28 +21,24 @@ public class MalhaLogisticaService {
 	private MalhaLogisticaEJB malhaLogisticaEJB;
 	
 	@GET
-	public String consultar(@QueryParam("nome") String nome, @QueryParam("origem") String origem, @QueryParam("destino") String destino,
+	public String consultar(@QueryParam("origem") String origem, @QueryParam("destino") String destino,
 			@QueryParam("autonomia") BigDecimal autonomia, @QueryParam("valorLitro") BigDecimal valorLitro) {
 		
-		MalhaLogistica malha = malhaLogisticaEJB.carregar(nome);
-		
-		Caminho caminho = malha.getMenorCaminho(origem, destino);
+		Caminho caminho = malhaLogisticaEJB.obterMenorCaminho(origem, destino);
 
 		// TODO onde colocar esse calculo?
 		return String.format("[%s] custo: %s", caminho.getRota(), new BigDecimal(caminho.getCusto()).divide(autonomia).multiply(valorLitro));
 	}
 	
 	@PUT
-	public String adicionar(@FormParam("nome") String nome, @FormParam("malha") String malha) {
-		System.out.println(String.format("Nome da malha: %s", nome));
+	public void adicionar(@FormParam("nome") String nome, @FormParam("malha") String malha) {
+		System.out.println(String.format("Nome do mapa: %s", nome));
 		System.out.println(String.format("Malha: %s", malha));
 
 		MalhaLogisticaBuilder builder = new MalhaLogisticaBuilder();
-		MalhaLogistica malhaLogistica = builder.build(nome, malha);
+		Mapa mapa = builder.build(nome, malha);
 		
-		malhaLogisticaEJB.gravar(malhaLogistica);
-
-		return "Adicionou";
+		malhaLogisticaEJB.gravar(mapa);
 	}
 
 }

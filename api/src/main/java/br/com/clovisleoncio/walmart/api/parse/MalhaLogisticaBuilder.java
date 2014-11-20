@@ -1,19 +1,18 @@
 package br.com.clovisleoncio.walmart.api.parse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import br.com.clovisleoncio.walmart.negocio.entidade.MalhaLogistica;
-import br.com.clovisleoncio.walmart.negocio.entidade.Ponto;
+import br.com.clovisleoncio.walmart.negocio.entidade.Mapa;
+import br.com.clovisleoncio.walmart.negocio.entidade.Rota;
 
 public class MalhaLogisticaBuilder {
 	
-	private Map<String, Ponto> nomesToPontos = new HashMap<String, Ponto>();
-	
-	public MalhaLogistica build(String nome, String representacao) {
+	public Mapa build(String nome, String representacao) {
 		
 		String[] linhas = representacao.split("\n");
+		
+		List<Rota> rotas = new ArrayList<Rota>();
 		
 		for (String linha : linhas) {
 			
@@ -23,23 +22,11 @@ public class MalhaLogisticaBuilder {
 			String nomeDestino = dadosLinha[1];
 			Integer distancia = Integer.valueOf(dadosLinha[2]);
 			
-			Ponto origem = getPonto(nomeOrigem);
-			Ponto destino = getPonto(nomeDestino);
-			
-			origem.addTrecho(destino, distancia);
+			rotas.add(new Rota(nomeOrigem, nomeDestino, distancia));
 			
 		}
 		
-		return new MalhaLogistica(nome, new ArrayList<Ponto>(nomesToPontos.values()));
-	}
-
-	private Ponto getPonto(String nome) {
-		Ponto ponto = nomesToPontos.get(nome);
-		if (ponto == null) {
-			ponto = new Ponto(nome);
-			nomesToPontos.put(nome, ponto);
-		}
-		return ponto;
+		return new Mapa(nome, rotas);
 	}
 
 }
